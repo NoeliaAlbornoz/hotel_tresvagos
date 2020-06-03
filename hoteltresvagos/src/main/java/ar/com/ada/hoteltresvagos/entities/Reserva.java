@@ -26,7 +26,7 @@ public class Reserva {
     private BigDecimal importeTotal;
     @Column(name="importe_pagado")
     private BigDecimal importePagado;
-    @Column(name="tipo_estado_id")
+    @Column(name="estado_id")
     private int tipoEstadoId;
 
     @ManyToOne
