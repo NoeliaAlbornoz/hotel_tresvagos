@@ -133,4 +133,33 @@ public class HuespedManager {
 
     }
 
+    public List<Reserva> buscarReservasPor(String nombre) {
+
+        Session session = sessionFactory.openSession();
+
+        // SQL Injection vulnerability exposed.
+        // Deberia traer solo aquella del nombre y con esto demostrarmos que trae todas
+        // si pasamos
+        // como nombre: "' or '1'='1"
+        //Query query = session.createNativeQuery("SELECT * FROM huesped where nombre = '" + nombre + "'", Huesped.class);
+
+        //List<Huesped> huespedes = query.getResultList();
+
+        //return huespedes;
+
+        //SQL NATIVA CON PARAMETROS
+        Query queryForma1 = session.createNativeQuery
+        ("SELECT * FROM reserva r inner join huesped h on h.huesped_id = r.huesped_id where nombre = ?", Reserva.class);
+
+        queryForma1.setParameter(1, nombre);
+
+        //JPQL SELECT SOBRE OBJETOS
+        Query queryForma2 = session.createQuery("Select r from Reserva r where r.huesped.nombre = :nombre", Reserva.class);
+
+        List<Reserva> reservas = queryForma1.getResultList();
+
+        return reservas;
+
+    }
+
 }
