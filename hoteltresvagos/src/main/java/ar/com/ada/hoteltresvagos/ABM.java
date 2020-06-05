@@ -93,8 +93,20 @@ public class ABM {
         System.out.println("Ingrese el nombre:");
         huesped.setNombre(Teclado.nextLine());
         System.out.println("Ingrese el DNI:");
-        huesped.setDni(Teclado.nextInt());
+        int dni = Teclado.nextInt();
         Teclado.nextLine();
+        
+        Huesped huesped1 = ABMHuesped.readByDNI(dni);
+
+        if(huesped1 != null){
+
+            System.out.println("DNI ya existe");
+            return;
+
+        }
+
+        huesped.setDni(dni);
+        
         System.out.println("Ingrese la domicilio:");
         huesped.setDomicilio(Teclado.nextLine());
 
@@ -389,7 +401,7 @@ public class ABM {
         System.out.println("3. Para modificar un huesped.");
         System.out.println("4. Para ver el listado.");
         System.out.println("5. Buscar un huesped por nombre especifico(SQL Injection)).");
-        System.out.println("6. Menú Reserva.");
+        System.out.println("6. Reservas.");
         System.out.println("0. Para terminar.");
         System.out.println("");
         System.out.println("=======================================");
