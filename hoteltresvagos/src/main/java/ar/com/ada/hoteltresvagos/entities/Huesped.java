@@ -56,7 +56,7 @@ public class Huesped {
             // no se ejecuta nada mas despues del throw
             throw new HuespedDNIException(this, "ocurrio un error con el DNI");
 
-        }
+        } 
         this.dni = dni;
     }
 
