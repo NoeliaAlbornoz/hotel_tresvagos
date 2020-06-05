@@ -155,8 +155,30 @@ public class HuespedManager {
 
         //JPQL SELECT SOBRE OBJETOS
         Query queryForma2 = session.createQuery("Select r from Reserva r where r.huesped.nombre = :nombre", Reserva.class);
+        queryForma2.setParameter("nombre", nombre);
 
-        List<Reserva> reservas = queryForma1.getResultList();
+        Query queryForma3 = session.createQuery("Select r from Reserva r where r.huesped.nombre like concat(%, :nombre, %) ", Reserva.class);
+
+        List<Reserva> reservas = queryForma2.getResultList();
+
+        return reservas;
+
+    }
+
+    public List<Reserva> buscarReservasPor(int dni) {
+
+        Session session = sessionFactory.openSession();
+
+        //SQL NATIVA CON PARAMETROS
+        Query query = session.createNativeQuery
+        ("SELECT * FROM reserva r inner join huesped h on h.huesped_id = r.huesped_id where dni = ?", Reserva.class);
+
+        query.setParameter(1, dni);
+
+        //JPQL SELECT SOBRE OBJETOS
+        Query query2 = session.createQuery("Select r from Reserva r where r.huesped.dni = dni", Reserva.class);
+
+        List<Reserva> reservas = query.getResultList();
 
         return reservas;
 
