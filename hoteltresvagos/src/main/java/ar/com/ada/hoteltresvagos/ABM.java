@@ -301,6 +301,17 @@ public class ABM {
         }
     }
 
+    public void listarReservasPorDNIHuesped() {
+
+        System.out.println("Ingrese el dni del huesped:");
+        int dni = Teclado.nextInt();
+
+        List<Reserva> reservas = ABMHuesped.buscarReservasPor(dni);
+        for (Reserva reserva : reservas) {
+            mostrarReserva(reserva);
+        }
+    }
+
     public void mostrarHuesped(Huesped huesped) {
 
         System.out.print("Id: " + huesped.getHuespedId() + " Nombre: " + huesped.getNombre() + " DNI: "
@@ -356,6 +367,10 @@ public class ABM {
                         break;
 
                     case 6:
+                        listarReservasPorDNIHuesped();
+                        break;
+                    
+                    case 7:
                         buscarReservaPorFecha();
                         break;
 
@@ -378,19 +393,10 @@ public class ABM {
             System.out.println("Que lindo mi sistema,se rompio mi sistema");
             throw e;
         } finally {
-            System.out.println("Saliendo del sistema, bye bye...");
+            System.out.println("Saliendo del menú Reservas.");
 
         }
 
-    }
-
-    public static void printMenu() {
-        System.out.println("=======================================");
-        System.out.println("");
-        System.out.println("1. Menú Huésped.");
-        System.out.println("2. Menú Reserva.");
-        System.out.println("");
-        System.out.println("=======================================");
     }
 
     public static void printOpciones() {
@@ -415,7 +421,8 @@ public class ABM {
         System.out.println("3. Para modificar una reserva.");
         System.out.println("4. Para ver el listado.");
         System.out.println("5. Para ver el listado de reservas de un huesped por su nombre.");
-        System.out.println("6. Buscar una reserva por fecha de reserva.");
+        System.out.println("6. Para ver el listado de reservas de un huesped por su dni.");
+        System.out.println("7. Buscar una reserva por fecha de reserva.");
         System.out.println("0. Para terminar.");
         System.out.println("");
         System.out.println("=======================================");
@@ -492,6 +499,13 @@ public class ABM {
 
     public void listarReservas() {
 
+        List<Reserva> todas = ABMReserva.buscarTodas();
+
+        for(Reserva reserva : todas){
+
+            mostrarReserva(reserva);
+
+        }
     }
 
     public void listarReservasPorDNI() {
