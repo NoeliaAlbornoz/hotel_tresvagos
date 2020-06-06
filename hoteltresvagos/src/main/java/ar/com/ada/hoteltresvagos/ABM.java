@@ -386,7 +386,6 @@ public class ABM {
         System.out.println("4. Para ver el listado.");
         System.out.println("5. Para ver el listado de reservas de un huesped por su nombre.");
         System.out.println("6. Para ver el listado de reservas de un huesped por su dni.");
-        System.out.println("7. Buscar una reserva por fecha de reserva.");
         System.out.println("0. Para terminar.");
         System.out.println("");
         System.out.println("=======================================");
@@ -420,10 +419,10 @@ public class ABM {
         System.out.println("Ingrese la fecha de ingreso(dd/mm/yy)");
         fechaIngreso = dFormat.parse(Teclado.nextLine());
 
+        reserva.setFechaIngreso(fechaIngreso);
+
         System.out.println("Ingrese la fecha de egreso(dd/mm/yy)");
         fechaEgreso = dFormat.parse(Teclado.nextLine());
-
-        reserva.setFechaIngreso(fechaIngreso);
 
         reserva.setFechaEgreso(fechaEgreso);
 
@@ -483,7 +482,113 @@ public class ABM {
 
     }
 
-    public void modificaReserva() {
+    public void modificaReserva() throws Exception {
+
+        Date fechaIngreso = null;
+        Date fechaEgreso = null;
+
+        DateFormat dFormat = new SimpleDateFormat("dd/MM/yy");
+
+        // System.out.println("Ingrese el nombre de la huesped a modificar:");
+        // String n = Teclado.nextLine();
+
+        System.out.println("Ingrese el ID de la huesped:");
+        int id = Teclado.nextInt();
+        Teclado.nextLine();
+        Huesped huespedEncontrado = ABMHuesped.read(id);
+
+        System.out.println("Ingrese el ID de la reserva:");
+        int idR = Teclado.nextInt();
+        Teclado.nextLine();
+        Reserva reservaEncontrada = ABMReserva.read(idR);
+
+
+        if (huespedEncontrado != null && reservaEncontrada != null) {
+
+            // RECOMENDACION NO USAR toString(), esto solo es a nivel educativo.
+            System.out.println(huespedEncontrado.toString());
+
+            System.out.println(
+                    "Elija qué dato de la reserva desea modificar: \n1: fecha de reserva, \n2: fecha de ingreso, \n3: fecha de egreso, \n4: habitación, \n5: importe total, \n6: importe de reserva, \n7: importe pagado, \n8: estado de pago");
+            int selecDato = Teclado.nextInt();
+
+            switch (selecDato) {
+                case 1:
+                    System.out.println("Ingrese nueva fecha de reserva:");
+                    Teclado.nextLine();
+                    reservaEncontrada.setFechaReserva(new Date());
+
+                    break;
+                case 2:
+
+                System.out.println("Ingrese nueva fecha de ingreso(dd/mm/yy)");
+                Teclado.nextLine();
+                fechaIngreso = dFormat.parse(Teclado.nextLine());
+        
+                reservaEncontrada.setFechaIngreso(fechaIngreso);
+
+                    break;
+                case 3:
+                    System.out.println("Ingrese nueva fecha de egreso(dd/mm/yy):");
+                    Teclado.nextLine();
+                    fechaEgreso = dFormat.parse(Teclado.nextLine());
+
+                    reservaEncontrada.setFechaEgreso(fechaEgreso);
+
+                    break;
+                case 4:
+                    System.out.println("Ingrese habitación:");
+                    Teclado.nextLine();
+                    reservaEncontrada.setHabitacion(Teclado.nextInt());
+                    Teclado.nextLine();
+
+                    break;
+                
+                case 5:
+                    System.out.println("Ingrese nuevo importe total:");
+                    Teclado.nextLine();
+                    reservaEncontrada.setImporteTotal(Teclado.nextBigDecimal());
+                    Teclado.nextLine();
+
+                    break;
+                
+                case 6:
+                    System.out.println("Ingrese nuevo importe de reserva:");
+                    Teclado.nextLine();
+                    reservaEncontrada.setImporteReserva(Teclado.nextBigDecimal());
+                    Teclado.nextLine();
+
+                    break;
+                
+                case 7:
+                    System.out.println("Ingrese nuevo importe pagado:");
+                    Teclado.nextLine();
+                    reservaEncontrada.setImportePagado(Teclado.nextBigDecimal());
+                    Teclado.nextLine();
+
+                    break;
+
+                case 8:
+                    System.out.println("Ingrese estado:");
+                    Teclado.nextLine();
+                    reservaEncontrada.setTipoEstadoId(Teclado.nextInt());
+                    Teclado.nextLine();
+
+                    break;
+
+                default:
+                    break;
+            }
+
+            // Teclado.nextLine();
+
+            ABMReserva.update(reservaEncontrada);
+
+            System.out.println("La reserva " + reservaEncontrada.getReservaId() + " ha sido modificada.");
+
+        } else {
+            System.out.println("Huesped/Reserva no encontrados.");
+        }
 
     }
 
