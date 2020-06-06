@@ -39,7 +39,7 @@ public class ABM {
                         try {
                             alta();
                         } catch (HuespedDNIException exdni) {
-                            System.out.println("Error en el DNI. Indique uno valido");
+                            System.out.println("Error en el DNI o el DNI ya existe.");
                         }
                         break;
 
@@ -100,8 +100,7 @@ public class ABM {
 
         if(huesped1 != null){
 
-            System.out.println("DNI ya existe");
-            return;
+            throw new HuespedDNIException(huesped, "DNI ya existe");
 
         }
 
