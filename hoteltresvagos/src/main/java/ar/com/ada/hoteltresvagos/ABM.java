@@ -289,28 +289,6 @@ public class ABM {
         }
     }
 
-    public void listarReservasPorNombreHuesped() {
-
-        System.out.println("Ingrese el nombre del huesped:");
-        String nombre = Teclado.nextLine();
-
-        List<Reserva> reservas = ABMHuesped.buscarReservasPor(nombre);
-        for (Reserva reserva : reservas) {
-            mostrarReserva(reserva);
-        }
-    }
-
-    public void listarReservasPorDNIHuesped() {
-
-        System.out.println("Ingrese el dni del huesped:");
-        int dni = Teclado.nextInt();
-
-        List<Reserva> reservas = ABMHuesped.buscarReservasPor(dni);
-        for (Reserva reserva : reservas) {
-            mostrarReserva(reserva);
-        }
-    }
-
     public void mostrarHuesped(Huesped huesped) {
 
         System.out.print("Id: " + huesped.getHuespedId() + " Nombre: " + huesped.getNombre() + " DNI: "
@@ -320,15 +298,6 @@ public class ABM {
             System.out.println(" Alternativo: " + huesped.getDomicilioAlternativo());
         else
             System.out.println();
-    }
-
-    public void mostrarReserva(Reserva reserva) {
-
-        System.out.print("\nReserva: \nId: " + reserva.getReservaId() + "\nFecha Reserva: " + reserva.getFechaReserva()
-                + "\nFecha de Ingreso: " + reserva.getFechaIngreso() + "\nFecha de Egreso: " + reserva.getFechaEgreso()
-                + "\nImporte de la reserva: " + reserva.getImporteReserva() + "\nHabitación: " + reserva.getHabitacion()
-                + "\nEstado de pago: " + reserva.getTipoEstadoId() + "\n");
-
     }
 
     public void seleccionarMenuReserva() throws Exception {
@@ -367,10 +336,6 @@ public class ABM {
 
                     case 6:
                         listarReservasPorDNIHuesped();
-                        break;
-                    
-                    case 7:
-                        buscarReservaPorFecha();
                         break;
 
                     default:
@@ -490,6 +455,32 @@ public class ABM {
 
     public void bajaReserva() {
 
+        System.out.println("Ingrese el ID de Huesped:");
+        int id = Teclado.nextInt();
+        Teclado.nextLine();
+        Huesped huespedEncontrado = ABMHuesped.read(id);
+
+        System.out.println("Ingrese el ID de Reserva:");
+        int idR = Teclado.nextInt();
+        Teclado.nextLine();
+        Reserva reservaEncontrada = ABMReserva.read(idR);
+
+        if (huespedEncontrado == null) {
+            System.out.println("Huesped no encontrado.");
+
+        } else {
+
+            try {
+
+                ABMReserva.delete(reservaEncontrada);
+                System.out
+                        .println("La reserva " + reservaEncontrada.getReservaId() + " ha sido eliminada.");
+            } catch (Exception e) {
+                System.out.println("Ocurrio un error al eliminar una reserva.");
+            }
+
+        }
+
     }
 
     public void modificaReserva() {
@@ -507,11 +498,34 @@ public class ABM {
         }
     }
 
-    public void listarReservasPorDNI() {
+    public void listarReservasPorNombreHuesped() {
 
+        System.out.println("Ingrese el nombre del huesped:");
+        String nombre = Teclado.nextLine();
+
+        List<Reserva> reservas = ABMHuesped.buscarReservasPor(nombre);
+        for (Reserva reserva : reservas) {
+            mostrarReserva(reserva);
+        }
     }
 
-    public void buscarReservaPorFecha() {
+    public void listarReservasPorDNIHuesped() {
+
+        System.out.println("Ingrese el dni del huesped:");
+        int dni = Teclado.nextInt();
+
+        List<Reserva> reservas = ABMHuesped.buscarReservasPor(dni);
+        for (Reserva reserva : reservas) {
+            mostrarReserva(reserva);
+        }
+    }
+
+    public void mostrarReserva(Reserva reserva) {
+
+        System.out.print("\nReserva: \nId: " + reserva.getReservaId() + "\nFecha Reserva: " + reserva.getFechaReserva()
+                + "\nFecha de Ingreso: " + reserva.getFechaIngreso() + "\nFecha de Egreso: " + reserva.getFechaEgreso()
+                + "\nImporte de la reserva: " + reserva.getImporteReserva() + "\nHabitación: " + reserva.getHabitacion()
+                + "\nEstado de pago: " + reserva.getTipoEstadoId() + "\n");
 
     }
 
