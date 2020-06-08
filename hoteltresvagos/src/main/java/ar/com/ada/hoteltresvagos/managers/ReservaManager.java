@@ -100,22 +100,40 @@ public class ReservaManager {
 
     }
 
-    /**
-     * Busca una lista de huespedes por el nombre completo Esta armado para que se
-     * pueda generar un SQL Injection y mostrar commo NO debe programarse.
-     * 
-     * @param nombre
-     * @return
-     */
-    public List<Reserva> buscarPor(int huespedId) {
+    public List<Reserva> buscarPor(String nombre) {
 
         Session session = sessionFactory.openSession();
 
-        // SQL Injection vulnerability exposed.
-        // Deberia traer solo aquella del nombre y con esto demostrarmos que trae todas
-        // si pasamos
-        // como nombre: "' or '1'='1"
-        Query query = session.createNativeQuery("SELECT * FROM reserva where huesped_id = '" + huespedId + "'", Reserva.class);
+        //JPQL SELECT SOBRE OBJETOS
+        //Query queryForma2 = session.createQuery("Select r from Reserva r where r.huesped.nombre = :nombre", Reserva.class);
+        //queryForma2.setParameter("nombre", nombre);
+
+        //Query queryForma3 = session.createQuery("Select r from Reserva r where r.huesped.nombre like concat(%, :nombre, %) ", Reserva.class);
+
+        //SQL NATIVA CON PARAMETROS
+        Query query = session.createNativeQuery
+        ("SELECT * FROM reserva r inner join huesped h on h.huesped_id = r.huesped_id where nombre = ?", Reserva.class);
+
+        query.setParameter(1, nombre);
+
+        List<Reserva> reservas = query.getResultList();
+
+        return reservas;
+
+    }
+
+    public List<Reserva> buscarPor(int dni) {
+
+        Session session = sessionFactory.openSession();
+
+        //JPQL SELECT SOBRE OBJETOS
+        //Query query2 = session.createQuery("Select r from Reserva r where r.huesped.dni = dni", Reserva.class);
+
+        //SQL NATIVA CON PARAMETROS
+        Query query = session.createNativeQuery
+        ("SELECT * FROM reserva r inner join huesped h on h.huesped_id = r.huesped_id where dni = ?", Reserva.class);
+
+        query.setParameter(1, dni);
 
         List<Reserva> reservas = query.getResultList();
 
