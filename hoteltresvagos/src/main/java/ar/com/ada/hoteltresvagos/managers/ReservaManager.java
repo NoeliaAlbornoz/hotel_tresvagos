@@ -80,20 +80,12 @@ public class ReservaManager {
         session.close();
     }
 
-    /**
-     * Este metodo en la vida real no debe existir ya qeu puede haber miles de
-     * usuarios
-     * 
-     * @return
-     */
     public List<Reserva> buscarTodas() {
 
         Session session = sessionFactory.openSession();
 
-        /// NUNCA HARCODEAR SQLs nativos en la aplicacion.
-        // ESTO es solo para nivel educativo
         Query query = session.createNativeQuery("SELECT * FROM reserva", Reserva.class);
-        //query = session.createQuery("From Obse")
+        
         List<Reserva> todas = query.getResultList();
 
         return todas;
