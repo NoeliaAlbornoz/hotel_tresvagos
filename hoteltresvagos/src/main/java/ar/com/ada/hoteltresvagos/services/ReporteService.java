@@ -32,6 +32,15 @@ public class ReporteService {
         }
     }
 
+    public void listarPorEstadoId() {
+
+        int id = ingresarID();
+        List<ReporteImportesEstado> reportes = ABMReporte.generarPorEstadoId(id);
+        for (ReporteImportesEstado reporte : reportes) {
+            mostrar(reporte);
+        }
+    }
+
     public void listarPorHuespedes() {
 
         List<ReporteImportesHuesped> reportes = ABMReporte.generarPorHuespedes();
@@ -48,18 +57,9 @@ public class ReporteService {
         }
     }
 
-    public void listarPorEstadoId() {
-
-        int id = ingresarID();
-        List<ReporteImportesEstado> reportes = ABMReporte.generarPorEstadoId(id);
-        for (ReporteImportesEstado reporte : reportes) {
-            mostrar(reporte);
-        }
-    }
-
     public void mostrar(ReporteImportesHuesped reporte) {
 
-        System.out.println("Id " + reporte.getHuespedId() + "Cantidad de Reservas " + reporte.getCantidadReservas() +  "Importe de Reserva " + reporte.getImporteReserva() + "Importe Total " + reporte.getImporteTotal() + "Importe Pagado " + reporte.getImportePagado());
+        System.out.println("Id " + reporte.getHuespedId() + "Nombre" + reporte.getNombre() + "Cantidad de Reservas " + reporte.getCantidadReservas() +  "Importe de Reserva " + reporte.getImporteReserva() + "Importe Total " + reporte.getImporteTotal() + "Importe Pagado " + reporte.getImportePagado());
 
     }
 
