@@ -106,7 +106,9 @@ public class HuespedManager {
 
         Session session = sessionFactory.openSession();
 
-        Query query = session.createNativeQuery("SELECT * FROM huesped where nombre = '" + nombre + "'", Huesped.class);
+        Query query = session.createNativeQuery("SELECT * FROM huesped where nombre = ?", Huesped.class);
+
+        query.setParameter(1, nombre);
 
         List<Huesped> huespedes = query.getResultList();
 
@@ -118,7 +120,9 @@ public class HuespedManager {
 
         Session session = sessionFactory.openSession();
 
-        Query query = session.createNativeQuery("SELECT * FROM huesped where dni = '" + dni + "'", Huesped.class);
+        Query query = session.createNativeQuery("SELECT * FROM huesped where dni = ?", Huesped.class);
+
+        query.setParameter(1, dni);
 
         List<Huesped> huespedes = query.getResultList();
 
