@@ -6,9 +6,7 @@ import org.hibernate.exception.ConstraintViolationException;
 
 import ar.com.ada.hoteltresvagos.excepciones.*;
 import ar.com.ada.hoteltresvagos.managers.*;
-import ar.com.ada.hoteltresvagos.services.HuespedService;
-import ar.com.ada.hoteltresvagos.services.ReporteService;
-import ar.com.ada.hoteltresvagos.services.ReservaService;
+import ar.com.ada.hoteltresvagos.services.*;
 
 public class ABM {
 
@@ -18,9 +16,9 @@ public class ABM {
     protected ReservaManager ABMReserva = new ReservaManager();
     protected ReporteManager ABMReporte = new ReporteManager();
 
-    protected HuespedService huespedService = new HuespedService();
-    protected ReservaService reservaService = new ReservaService();
-    protected ReporteService reporteService = new ReporteService();
+    protected HuespedService huespedService = new HuespedService(ABMHuesped);
+    protected ReservaService reservaService = new ReservaService(ABMReserva);
+    protected ReporteService reporteService = new ReporteService(ABMReporte);
 
     public void iniciar() throws Exception {
 
