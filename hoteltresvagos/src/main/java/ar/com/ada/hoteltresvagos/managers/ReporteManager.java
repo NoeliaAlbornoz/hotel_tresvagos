@@ -11,9 +11,7 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
-import ar.com.ada.hoteltresvagos.entities.reportes.Reporte;
-import ar.com.ada.hoteltresvagos.entities.reportes.ReporteImportesEstado;
-import ar.com.ada.hoteltresvagos.entities.reportes.ReporteImportesHuesped;
+import ar.com.ada.hoteltresvagos.entities.*;
 
 public class ReporteManager {
 
@@ -87,7 +85,7 @@ public class ReporteManager {
         Session session = sessionFactory.openSession();
 
         Query query = session.createNativeQuery
-        ("SELECT h.huesped_id, h.nombre, count(r.reserva_id) cantidad_reservas, sum(r.importe_reserva) Total_importe_reserva, sum(r.importe_pagado) Total_importe_pagado, sum(r.importe_total) Total_importe FROM huesped h INNER JOIN reserva r on h.huesped_id = r.huesped_id WHERE h.huesped_id = ? GROUP BY h.huesped_id, h.nombre", ReporteImportesHuesped.class);
+        ("SELECT h.huesped_id, h.nombre, count(r.reserva_id) cantidad_reservas, sum(r.importe_reserva) total_importe_reserva, sum(r.importe_pagado) total_importe_pagado, sum(r.importe_total) total_importe FROM huesped h INNER JOIN reserva r on h.huesped_id = r.huesped_id WHERE h.huesped_id = ? GROUP BY h.huesped_id, h.nombre", ReporteImportesHuesped.class);
 
         query.setParameter(1, huesped_id);
 
@@ -102,7 +100,7 @@ public class ReporteManager {
         Session session = sessionFactory.openSession();
 
         Query query = session.createNativeQuery
-        ("SELECT r.estado_id, count(r.reserva_id) cantidad_reservas, sum(r.importe_reserva) Total_importe_reserva, sum(r.importe_pagado) Total_importe_pagado, sum(r.importe_total) Total_importe FROM huesped h INNER JOIN reserva r on h.huesped_id = r.huesped_id WHERE estado_id = ? GROUP BY e.estado_pago_id", ReporteImportesEstado.class);
+        ("SELECT r.estado_id, count(r.reserva_id) cantidad_reservas, sum(r.importe_reserva) total_importe_reserva, sum(r.importe_pagado) total_importe_pagado, sum(r.importe_total) total_importe FROM huesped h INNER JOIN reserva r on h.huesped_id = r.huesped_id WHERE estado_id = ? GROUP BY e.estado_pago_id", ReporteImportesEstado.class);
 
         query.setParameter(1, estado_id);
 
@@ -119,9 +117,9 @@ public class ReporteManager {
         Query query = session.createNativeQuery
         ("SELECT h.huesped_id, h.nombre," +
         "count(*) cantidad_reservas," + 
-        "sum(r.importe_reserva) Total_importe_reserva," + 
-        "sum(r.importe_pagado) Total_importe_pagado," +
-        "sum(r.importe_total) Total_importe " + 
+        "sum(r.importe_reserva) total_importe_reserva," + 
+        "sum(r.importe_pagado) total_importe_pagado," +
+        "sum(r.importe_total) total_importe " + 
         "FROM huesped h INNER JOIN reserva r on h.huesped_id = r.huesped_id" +
         "GROUP BY h.huesped_id, h.nombre", ReporteImportesHuesped.class);
 
@@ -138,9 +136,9 @@ public List<ReporteImportesEstado> generarPorEstados() {
         Query query = session.createNativeQuery
         ("SELECT r.estado_id," + 
         "count(r.reserva_id) cantidad_reservas," +
-        "sum(r.importe_reserva) Total_importe_reserva," +
-        "sum(r.importe_pagado) Total_importe_pagado," +
-        "sum(r.importe_total) Total_importe" +
+        "sum(r.importe_reserva) total_importe_reserva," +
+        "sum(r.importe_pagado) total_importe_pagado," +
+        "sum(r.importe_total) total_importe" +
         "FROM huesped h INNER JOIN reserva r on h.huesped_id = r.huesped_id" +
         "GROUP BY e.estado_pago_id", ReporteImportesEstado.class);
 
