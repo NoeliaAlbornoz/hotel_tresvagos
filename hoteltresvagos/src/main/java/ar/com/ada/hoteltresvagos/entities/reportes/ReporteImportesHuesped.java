@@ -4,21 +4,22 @@ import java.math.BigDecimal;
 
 import javax.persistence.*;
 
-import ar.com.ada.hoteltresvagos.entities.Huesped;
-import ar.com.ada.hoteltresvagos.entities.Reserva;
-
 @Entity
 public class ReporteImportesHuesped extends Reporte {
 
     @Id
     @Column(name = "huesped_id")
     private int huespedId;
+    @Column(name = "nombre")
+    private String nombre;
+    @Column(name = "cantidad_reservas")
     private int cantidadReservas;
+    @Column(name = "importe_reserva")
     private BigDecimal importeReserva;
+    @Column(name = "importe_total")
     private BigDecimal importeTotal;
+    @Column(name = "importe_pagado")
     private BigDecimal importePagado;
-    private Huesped huesped;
-    private Reserva reserva;
 
     public int getHuespedId() {
         return huespedId;
@@ -60,20 +61,12 @@ public class ReporteImportesHuesped extends Reporte {
         this.importePagado = importePagado;
     }
 
-    public Huesped getHuesped() {
-        return huesped;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setHuesped(Huesped huesped) {
-        this.huesped = huesped;
-    }
-
-    public Reserva getReserva() {
-        return reserva;
-    }
-
-    public void setReserva(Reserva reserva) {
-        this.reserva = reserva;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
     
 }
