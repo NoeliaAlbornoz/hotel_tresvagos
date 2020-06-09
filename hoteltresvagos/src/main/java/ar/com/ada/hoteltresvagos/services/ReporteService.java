@@ -3,14 +3,19 @@ package ar.com.ada.hoteltresvagos.services;
 import java.util.List;
 import java.util.Scanner;
 
-import ar.com.ada.hoteltresvagos.entities.reportes.ReporteImportesEstado;
-import ar.com.ada.hoteltresvagos.entities.reportes.ReporteImportesHuesped;
-import ar.com.ada.hoteltresvagos.managers.ReporteManager;
+import ar.com.ada.hoteltresvagos.entities.*;
+import ar.com.ada.hoteltresvagos.managers.*;
 
 public class ReporteService {
 
     public static Scanner Teclado = new Scanner(System.in);
-    protected ReporteManager ABMReporte = new ReporteManager();
+    protected ReporteManager ABMReporte;
+
+    public ReporteService(ReporteManager ABMReporte) {
+
+        this.ABMReporte = ABMReporte;
+        
+	}
 
     public int ingresarID() {
 

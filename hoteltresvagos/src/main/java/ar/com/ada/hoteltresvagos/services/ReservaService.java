@@ -15,11 +15,16 @@ import ar.com.ada.hoteltresvagos.managers.ReservaManager;
 
 public class ReservaService {
 
-
     public static Scanner Teclado = new Scanner(System.in);
 
     protected HuespedManager ABMHuesped = new HuespedManager();
     protected ReservaManager ABMReserva = new ReservaManager();
+
+    public ReservaService(ReservaManager ABMReserva) {
+
+        this.ABMReserva = ABMReserva;
+        
+	}
     
     public void altaReserva() throws Exception {
 

@@ -11,7 +11,13 @@ public class HuespedService {
 
     public static Scanner Teclado = new Scanner(System.in);
 
-    protected HuespedManager ABMHuesped = new HuespedManager();
+    protected HuespedManager ABMHuesped;
+
+    public HuespedService(HuespedManager ABMHuesped) {
+
+        this.ABMHuesped = ABMHuesped;
+        
+	}
 
     public void alta() throws Exception {
 
