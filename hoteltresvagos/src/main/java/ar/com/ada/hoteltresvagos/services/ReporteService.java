@@ -64,15 +64,14 @@ public class ReporteService {
 
     public void mostrar(ReporteImportesHuesped reporte) {
 
-        System.out.println("Id " + reporte.getHuespedId() + "Nombre" + reporte.getNombre() + "Cantidad de Reservas " + reporte.getCantidadReservas() +  "Importe de Reserva " + reporte.getImporteReserva() + "Importe Total " + reporte.getImporteTotal() + "Importe Pagado " + reporte.getImportePagado());
+        System.out.println("Id " + reporte.getHuespedId() + " Nombre " + reporte.getNombre() + " Cantidad de Reservas " + reporte.getCantidadReservas() +  " Importe de Reserva " + reporte.getImporteReserva() + " Importe Total " + reporte.getImporteTotal() + " Importe Pagado " + reporte.getImportePagado());
 
     }
 
     public void mostrar(ReporteImportesEstado reporte) {
 
-        System.out.println("Id " + reporte.getEstadoId() + "Cantidad de Reservas " + reporte.getCantidadReservas() +  "Importe de Reserva " + reporte.getImporteReserva() + "Importe Total " + reporte.getImporteTotal() + "Importe Pagado " + reporte.getImportePagado());
+        System.out.println("Id " + reporte.getEstadoId() + " Descripcion " + reporte.getDescripcion() + " Cantidad de Reservas " + reporte.getCantidadReservas() +  " Importe de Reserva " + reporte.getImporteReserva() + " Importe Total " + reporte.getImporteTotal() + " Importe Pagado " + reporte.getImportePagado());
 
     }
 
-    
 }
