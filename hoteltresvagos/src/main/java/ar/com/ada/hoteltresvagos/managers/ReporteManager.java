@@ -80,54 +80,54 @@ public class ReporteManager {
         session.close();
     }
 
-    public List<ReporteImportesHuesped> generarPorHuespedId(int huesped_id) {
+    public List<ReporteHuesped> generarPorHuespedId(int huesped_id) {
 
         Session session = sessionFactory.openSession();
 
         Query query = session.createNativeQuery
-        ("SELECT h.huesped_id, h.nombre, count(r.reserva_id) cantidad_reservas, sum(r.importe_reserva) total_importe_reserva, sum(r.importe_pagado) total_importe_pagado, sum(r.importe_total) total_importe FROM huesped h INNER JOIN reserva r ON h.huesped_id = r.huesped_id WHERE h.huesped_id = ? GROUP BY h.huesped_id, h.nombre", ReporteImportesHuesped.class);
+        ("SELECT h.huesped_id, h.nombre, count(r.reserva_id) cantidad_reservas, sum(r.importe_reserva) total_importe_reserva, sum(r.importe_pagado) total_importe_pagado, sum(r.importe_total) total_importe FROM huesped h INNER JOIN reserva r ON h.huesped_id = r.huesped_id WHERE h.huesped_id = ? GROUP BY h.huesped_id, h.nombre", ReporteHuesped.class);
 
         query.setParameter(1, huesped_id);
 
-        List<ReporteImportesHuesped> reportes = query.getResultList();
+        List<ReporteHuesped> reportes = query.getResultList();
 
         return reportes;
 
     }
 
-    public List<ReporteImportesEstado> generarPorEstadoId(int estado_id) {
+    public List<ReporteEstado> generarPorEstadoId(int estado_id) {
 
         Session session = sessionFactory.openSession();
 
         Query query = session.createNativeQuery
-        ("SELECT r.estado_id, e.descripcion, count(r.reserva_id) cantidad_reservas, sum(r.importe_reserva) total_importe_reserva, sum(r.importe_pagado) total_importe_pagado, sum(r.importe_total) total_importe FROM reserva r INNER JOIN estado_pago e ON r.estado_id = e.estado_pago_id WHERE r.estado_id = ? GROUP BY e.estado_pago_id, e.descripcion;", ReporteImportesEstado.class);
+        ("SELECT r.estado_id, e.descripcion, count(r.reserva_id) cantidad_reservas, sum(r.importe_reserva) total_importe_reserva, sum(r.importe_pagado) total_importe_pagado, sum(r.importe_total) total_importe FROM reserva r INNER JOIN estado_pago e ON r.estado_id = e.estado_pago_id WHERE r.estado_id = ? GROUP BY e.estado_pago_id, e.descripcion;", ReporteEstado.class);
 
         query.setParameter(1, estado_id);
 
-        List<ReporteImportesEstado> reportes = query.getResultList();
+        List<ReporteEstado> reportes = query.getResultList();
 
         return reportes;
 
     }
 
-    public List<ReporteImportesHuesped> generarPorHuespedes() {
+    public List<ReporteHuesped> generarPorHuespedes() {
 
         Session session = sessionFactory.openSession();
 
         Query query = session.createNativeQuery
-        ("SELECT h.huesped_id, h.nombre, count(r.reserva_id) cantidad_reservas, sum(r.importe_reserva) total_importe_reserva, sum(r.importe_pagado) total_importe_pagado, sum(r.importe_total) total_importe FROM huesped h INNER JOIN reserva r ON h.huesped_id = r.huesped_id GROUP BY h.huesped_id, h.nombre", ReporteImportesHuesped.class);
+        ("SELECT h.huesped_id, h.nombre, count(r.reserva_id) cantidad_reservas, sum(r.importe_reserva) total_importe_reserva, sum(r.importe_pagado) total_importe_pagado, sum(r.importe_total) total_importe FROM huesped h INNER JOIN reserva r ON h.huesped_id = r.huesped_id GROUP BY h.huesped_id, h.nombre", ReporteHuesped.class);
 
-        List<ReporteImportesHuesped> reportes = query.getResultList();
+        List<ReporteHuesped> reportes = query.getResultList();
 
         return reportes;
 
     }
 
-public List<ReporteImportesEstado> generarPorEstados() {
+public List<ReporteEstado> generarPorEstados() {
 
         Session session = sessionFactory.openSession();
 
-        Query query = session.createNativeQuery("SELECT r.estado_id, e.descripcion, count(r.reserva_id) cantidad_reservas, sum(r.importe_reserva) total_importe_reserva, sum(r.importe_pagado) total_importe_pagado, sum(r.importe_total) total_importe FROM reserva r INNER JOIN estado_pago e ON r.estado_id = e.estado_pago_id GROUP BY e.estado_pago_id, e.descripcion;", ReporteImportesEstado.class);
+        Query query = session.createNativeQuery("SELECT r.estado_id, e.descripcion, count(r.reserva_id) cantidad_reservas, sum(r.importe_reserva) total_importe_reserva, sum(r.importe_pagado) total_importe_pagado, sum(r.importe_total) total_importe FROM reserva r INNER JOIN estado_pago e ON r.estado_id = e.estado_pago_id GROUP BY e.estado_pago_id, e.descripcion;", ReporteEstado.class);
 
         /*("SELECT r.estado_id, e.descripcion," + 
         "count(r.reserva_id) cantidad_reservas," +
@@ -137,7 +137,7 @@ public List<ReporteImportesEstado> generarPorEstados() {
         "FROM huesped h INNER JOIN estado_pago e ON r.estado_id = e.estado_pago_id" +
         "GROUP BY e.estado_pago_id", ReporteImportesEstado.class);*/
 
-        List<ReporteImportesEstado> reportes = query.getResultList();
+        List<ReporteEstado> reportes = query.getResultList();
 
         return reportes;
 

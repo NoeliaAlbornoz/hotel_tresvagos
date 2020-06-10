@@ -31,8 +31,8 @@ public class ReporteService {
     public void listarPorHuespedId() {
 
         int id = ingresarID();
-        List<ReporteImportesHuesped> reportes = ABMReporte.generarPorHuespedId(id);
-        for (ReporteImportesHuesped reporte : reportes) {
+        List<ReporteHuesped> reportes = ABMReporte.generarPorHuespedId(id);
+        for (ReporteHuesped reporte : reportes) {
             mostrar(reporte);
         }
     }
@@ -40,35 +40,35 @@ public class ReporteService {
     public void listarPorEstadoId() {
 
         int id = ingresarID();
-        List<ReporteImportesEstado> reportes = ABMReporte.generarPorEstadoId(id);
-        for (ReporteImportesEstado reporte : reportes) {
+        List<ReporteEstado> reportes = ABMReporte.generarPorEstadoId(id);
+        for (ReporteEstado reporte : reportes) {
             mostrar(reporte);
         }
     }
 
     public void listarPorHuespedes() {
 
-        List<ReporteImportesHuesped> reportes = ABMReporte.generarPorHuespedes();
-        for (ReporteImportesHuesped reporte : reportes) {
+        List<ReporteHuesped> reportes = ABMReporte.generarPorHuespedes();
+        for (ReporteHuesped reporte : reportes) {
             mostrar(reporte);
         }
     }
 
     public void listarPorEstados() {
 
-        List<ReporteImportesEstado> reportes = ABMReporte.generarPorEstados();
-        for (ReporteImportesEstado reporte : reportes) {
+        List<ReporteEstado> reportes = ABMReporte.generarPorEstados();
+        for (ReporteEstado reporte : reportes) {
             mostrar(reporte);
         }
     }
 
-    public void mostrar(ReporteImportesHuesped reporte) {
+    public void mostrar(ReporteHuesped reporte) {
 
         System.out.println("Id " + reporte.getHuespedId() + " Nombre " + reporte.getNombre() + " Cantidad de Reservas " + reporte.getCantidadReservas() +  " Importe de Reserva " + reporte.getImporteReserva() + " Importe Total " + reporte.getImporteTotal() + " Importe Pagado " + reporte.getImportePagado());
 
     }
 
-    public void mostrar(ReporteImportesEstado reporte) {
+    public void mostrar(ReporteEstado reporte) {
 
         System.out.println("Id " + reporte.getEstadoId() + " Descripcion " + reporte.getDescripcion() + " Cantidad de Reservas " + reporte.getCantidadReservas() +  " Importe de Reserva " + reporte.getImporteReserva() + " Importe Total " + reporte.getImporteTotal() + " Importe Pagado " + reporte.getImportePagado());
 
