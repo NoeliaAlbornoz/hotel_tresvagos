@@ -110,10 +110,10 @@ public class ABM {
     public static void printPanelReportes() {
         System.out.println("=======================================");
         System.out.println("");
-        System.out.println("1. Importes por Huespedes.");
-        System.out.println("2. Importes por Huesped Id.");
-        System.out.println("3. Importes por Estados.");
-        System.out.println("4. Importes por Estado Id.");
+        System.out.println("1. Importes por Huesped Id.");
+        System.out.println("2. Importes por Estado Id.");
+        System.out.println("3. Importes por Huespedes.");
+        System.out.println("4. Importes por Estados.");
         System.out.println("0. Terminar.");
         System.out.println("");
         System.out.println("=======================================");
@@ -272,20 +272,19 @@ public class ABM {
 
                 switch (opcion) {
                     case 1:
-                        reporteService.listarPorHuespedes();
-                        ;
-                        break;
-
-                    case 2:
                         reporteService.listarPorHuespedId();
                         break;
 
+                    case 2:
+                        reporteService.listarPorEstadoId();
+                        break;
+
                     case 3:
-                        reporteService.listarPorEstados();
+                        reporteService.listarPorHuespedes();
                         break;
 
                     case 4:
-                        reporteService.listarPorEstadoId();
+                        reporteService.listarPorEstados();
                         break;
 
                     default:
