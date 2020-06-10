@@ -10,6 +10,8 @@ public class ReporteImportesEstado extends Reporte {
     @Id
     @Column(name = "estado_id")
     private int estadoId;
+    @Column(name = "descripcion")
+    private String descripcion;
     @Column(name = "cantidad_reservas")
     private int cantidadReservas;
     @Column(name = "total_importe_reserva")
@@ -57,6 +59,14 @@ public class ReporteImportesEstado extends Reporte {
 
     public void setImportePagado(BigDecimal importePagado) {
         this.importePagado = importePagado;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
 }
