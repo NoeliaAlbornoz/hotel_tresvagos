@@ -293,7 +293,9 @@ public class ReservaService {
 
         System.out.println("Ingrese el nombre:");
 
-        return Teclado.nextLine();
+        String nombre = Teclado.nextLine();
+
+        return nombre;
 
     }
 
@@ -324,7 +326,9 @@ public class ReservaService {
 
         System.out.println("Ingrese domicilio:");
 
-        return Teclado.nextLine();
+        String domicilio = Teclado.nextLine();
+
+        return domicilio;
 
     }
 
@@ -332,7 +336,9 @@ public class ReservaService {
 
         System.out.println("Ingrese domicilio alternativo (OPCIONAL):");
 
-        return Teclado.nextLine();
+        String domAlternativo = Teclado.nextLine();
+
+        return domAlternativo;
 
     }
 

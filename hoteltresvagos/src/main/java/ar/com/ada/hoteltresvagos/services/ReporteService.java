@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import ar.com.ada.hoteltresvagos.entities.*;
 import ar.com.ada.hoteltresvagos.managers.*;
+import ar.com.ada.hoteltresvagos.entities.reportes.*;
 
 public class ReporteService {
 

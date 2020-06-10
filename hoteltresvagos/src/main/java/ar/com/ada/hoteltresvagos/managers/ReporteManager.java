@@ -12,6 +12,7 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import ar.com.ada.hoteltresvagos.entities.*;
+import ar.com.ada.hoteltresvagos.entities.reportes.*;
 
 public class ReporteManager {
 
